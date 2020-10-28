@@ -14,3 +14,6 @@ cd reactapp/
 npm install
 npm start
 ```
+
+## Visualisation de l'application
+http://localhost:3000/
