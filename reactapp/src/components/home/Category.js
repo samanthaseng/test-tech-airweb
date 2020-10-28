@@ -12,7 +12,8 @@ export default function Category(props) {
 
     const productsToDisplay = products.map(product => {
         return (
-            <ProductCard 
+            <ProductCard
+                key={product.label} 
                 id={product.id}
                 name={product.label}
                 description={product.description}

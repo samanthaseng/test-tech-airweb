@@ -72,7 +72,7 @@ function HomeScreen() {
       console.log(response)
       // setCategories(categoriesList);
     };
-    loadData();
+    // loadData();
 
     setCategories(categoriesList)
   }, [])
@@ -81,6 +81,7 @@ function HomeScreen() {
     ? categories.map(category => {
       return (
         <Category
+          key={category.label}
           name={category.label}
           description={category.description}
           products={category.products}
