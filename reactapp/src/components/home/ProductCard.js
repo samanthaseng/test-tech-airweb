@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Card } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
 import {
   CardFirstPart,
   CardSecondPart,
@@ -13,14 +14,25 @@ import {
   ProductTitle
 } from './HomeScreen.style';
 
-export default function ProductCard(props) {
-  const { id, name, description, price, image } = props;
+function ProductCard(props) {
+  const { id, name, description, price, image, addProduct } = props;
 
   const displayImage = image 
     ? <ProductImageContainer>
         <img src={image} alt={name} />
       </ProductImageContainer>
     : '';
+
+  const handleAdd = () => {
+    const productInfos = {   
+      id: id,
+      label: name,
+      description: description,
+      price: price,
+      image: image
+    }
+    addProduct(productInfos);
+  }
 
   return (
     <ProductCardContainer>
@@ -39,7 +51,7 @@ export default function ProductCard(props) {
             <Price>{price/100} €</Price>
           </PriceContainer>
 
-          <Button type='primary' icon={<ShoppingCartOutlined />}>
+          <Button type='primary' icon={<ShoppingCartOutlined />} onClick={handleAdd}>
             <span className='button-text'>
               Ajouter au panier
             </span>
@@ -50,3 +62,15 @@ export default function ProductCard(props) {
   );
 }
   
+function mapDispatchToProps(dispatch) {
+  return {
+    addProduct: function(product) { 
+      dispatch({ type: 'addProduct', product: product }) 
+    }
+  }
+}
+
+export default connect(
+  null, 
+  mapDispatchToProps
+)(ProductCard);

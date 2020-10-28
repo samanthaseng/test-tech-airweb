@@ -13,31 +13,15 @@ import {
 import Header from '../header/Header';
 import { cartColumns } from '../../config/cart-columns';
 
-function BasketScreen() {
+function BasketScreen(props) {
+  const { cart, deleteProduct } = props;
   const { Text } = Typography;
 
-  const products = [
-    {
-      id: 1,
-      label: "Titre unitaire",
-      description: "Titre permettant de voyager sur l'ensemble du réseau. Correspondances illimitées dans l'heure suivant la première validation.",
-      price: 150,
-      category_id: 1,
-      thumbnail_url: "https://picsum.photos/256/256",
-      quantity: 5
-    },
-    {
-      id: 2,
-      label: "2 x Titre Unitaire",
-      description: "Pack aller-retour. Titres permettant de voyager sur l'ensemble du réseau. Correspondances illimitées dans l'heure suivant la première validation.",
-      price: 250,
-      category_id: 1,
-      thumbnail_url: "https://picsum.photos/256/256", 
-      quantity: 1
-    }
-  ];
+  const handleDelete = (id) => {
+    deleteProduct(id);
+  }
 
-  const tableData = products.map((product, i) => {
+  const tableData = cart.map((product, i) => {
     return {
       key: i,
       id: product.id,
@@ -45,7 +29,7 @@ function BasketScreen() {
       quantity: product.quantity,
       price: product.price/100,
       totalprice: product.quantity * product.price/100,
-      action: <DeleteOutlined className='delete-icon' />
+      action: <DeleteOutlined className='delete-icon' onClick={() => handleDelete(product.id)} />
     }
   });
 
@@ -101,5 +85,20 @@ function BasketScreen() {
   );
 }
   
-export default BasketScreen;
+function mapStateToProps(state) {
+  return { cart: state.cart }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    deleteProduct: function(id) { 
+      dispatch({ type: 'deleteProduct', id }) 
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(BasketScreen);
   
