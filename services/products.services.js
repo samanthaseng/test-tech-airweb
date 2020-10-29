@@ -19,8 +19,7 @@ const getProducts = async () => {
     return categoriesResult.map(category => {
         category.products = productsResult.filter(product => product.category_id === category.id);
         return category
-    });
-    
+    });   
 }
 
 module.exports = { getProducts };

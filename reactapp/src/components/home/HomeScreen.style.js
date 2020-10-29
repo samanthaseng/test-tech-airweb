@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
+export const BackTopButton = styled.div`
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  background-color: ${themeGet('colors.color1', '#1C2E40')};
+  color: #ffffff;
+  text-align: center;
+`;
+
 export const CardFirstPart = styled.div`
   display: flex;
 `;
@@ -61,6 +71,12 @@ export const Container = styled.div`
   width: 100vw;
   min-height: 100vh;
   background: ${themeGet('backgrounds.image1', '#1C2E40')};
+`;
+
+export const FiltersContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 `;
 
 export const Price = styled.p`

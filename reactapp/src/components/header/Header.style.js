@@ -37,3 +37,20 @@ export const LogoContainer = styled.div`
         };
     }
 `;
+
+export const MenuButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 5px 0;
+`;
+
+export const MenuItemDescription = styled.p`
+    margin: 0;
+`;
+
+export const MenuItemTitle = styled.h4`
+    font-weight: bold;
+    margin: 0;
+`;
+
+export const MenuTitle = styled.h3``;
